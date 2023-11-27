@@ -9,7 +9,7 @@
     <string name="menuR">List fragment</string>
 
 
-    <string name="fragmentAdd">Fragment adding data</string>
+    <string name="fragmentAdd">Add new item:</string>
     <string name="fragmentShow">Fragment showing data</string>
     <string name="commonButton">Go</string>
     <string name="td">TODO</string>
@@ -37,11 +37,18 @@
 
     <string name="def_item_title">This is human 1</string>
     <string name="def_item_spec1">Human</string>
+    <string name="def_item_spec2">NPC</string>
+    <string name="def_item_spec3">Orc</string>
     <string name="add_item">Add item</string>
 
 
     <string name="return_button">Return</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
     <string name="show_danger">Is dangerous?</string>
     <string name="show_strength">Strength</string>
+    <string name="show_spec">Here add specific info</string>
+
+
 
 </resources>

@@ -63,6 +63,25 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*
+                    "name" to currData.text_name,
+                    "spec" to currData.text_spec,
+                    "strength" to currData.item_strength,
+                    "danger" to currData.dangerous,
+                    "type" to currData.item_type,
+                    "humanoids" to currData.humanoids
+         */
+        parentFragmentManager.setFragmentResultListener("addNewItem", viewLifecycleOwner){ string, bundle ->
+            run {
+                val itemName = bundle.getString("name")
+                val itemSpec = bundle.getString("spec")
+                val itemStrength = bundle.getFloat("strength")
+                val itemDanger = bundle.getBoolean("danger")
+                val itemType = bundle.getString("type")
+                val newItem = DataItem(itemName!!, itemSpec!!, itemStrength, itemType!!, itemDanger)
+                dataRepo.addItem(newItem)
+        }
+        }
 
         setHasOptionsMenu(true)
     }
@@ -74,7 +93,10 @@ class ListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.menu_item_add -> {
-                Toast.makeText(requireActivity(), "new item clicked!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireActivity(), "new item clicked!", Toast.LENGTH_SHORT).show()
+
+                //go to adder fragment
+                findNavController().navigate(R.id.action_listFragment_to_addFragment)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -114,7 +136,8 @@ class ListFragment : Fragment() {
                     "danger" to currData.dangerous,
                     "type" to currData.item_type,
                     "humanoids" to currData.humanoids
-                    ))
+                    )
+                )
 
 
 

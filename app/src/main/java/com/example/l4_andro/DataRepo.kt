@@ -24,7 +24,12 @@ class DataRepo {
         return true
     }
 
+    fun addItem(item: DataItem): Boolean {
+        return dataList.add(item)
+    }
+
     init {
         dataList = MutableList(LIST_SIZE) { i -> DataItem(i)}
+        //dataList.add(DataItem(16))
     }
 }
