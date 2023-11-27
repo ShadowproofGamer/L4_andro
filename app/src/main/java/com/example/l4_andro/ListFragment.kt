@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -106,14 +107,27 @@ class ListFragment : Fragment() {
             holder.txt1.text = currData.text_name
             holder.txt2.text = currData.item_type + " " + currData.text_spec +" "+ currData.item_strength
             holder.itemView.setOnClickListener {
-                //findNavController().navigate(R.id.action_listFragment_to_showFragment)
-                //parentFragmentManager.setFragmentResult()
+                parentFragmentManager.setFragmentResult("msgtochild", bundleOf(
+                    "name" to currData.text_name,
+                    "spec" to currData.text_spec,
+                    "strength" to currData.item_strength,
+                    "danger" to currData.dangerous,
+                    "type" to currData.item_type,
+                    "humanoids" to currData.humanoids
+                    ))
+
+
+
+                findNavController().navigate(R.id.action_listFragment_to_showFragment)
 
                 //temp for clicking an object
+                /*
                 Toast.makeText(requireContext(),
                     "You clicked: " + (position + 1),
 
                     Toast.LENGTH_SHORT).show()
+
+                 */
             }
             holder.itemView.setOnLongClickListener {
                 if (dataRepo.deleteItem(position))

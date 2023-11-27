@@ -39,4 +39,9 @@
     <string name="def_item_spec1">Human</string>
     <string name="add_item">Add item</string>
 
+
+    <string name="return_button">Return</string>
+    <string name="show_danger">Is dangerous?</string>
+    <string name="show_strength">Strength</string>
+
 </resources>
