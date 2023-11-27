@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/fragmentList" />
+        android:layout_height="516dp" />
 
 </FrameLayout>

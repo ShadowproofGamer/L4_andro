@@ -35,4 +35,8 @@
 
     <string name="tab_layout_desc">This is tab layout</string>
 
+    <string name="def_item_title">This is human 1</string>
+    <string name="def_item_spec1">Human</string>
+    <string name="add_item">Add item</string>
+
 </resources>
