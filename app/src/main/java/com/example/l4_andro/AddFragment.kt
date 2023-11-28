@@ -21,6 +21,7 @@ class AddFragment : Fragment() {
     lateinit var addStrength: RatingBar
     lateinit var addType: RadioGroup
     lateinit var addDanger: CheckBox
+
     lateinit var saveButton: Button
     lateinit var cancelButton: Button
 
@@ -46,27 +47,47 @@ class AddFragment : Fragment() {
         saveButton = _binding.addSaveButton
         cancelButton=_binding.addCancelButton
 
+
         return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cancelButton.setOnClickListener { requireActivity().onBackPressed() }
-        /*
+        //changing race depending on item checked
+        var race: String = "Human"
+        addType.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                _binding.addTypeHuman.id -> race="Human"
+                _binding.addTypeNPC.id -> race="NPC"
+                _binding.addTypeOrc.id -> race="Orc"
+            } }
+        //going back without changes
+        cancelButton.setOnClickListener {
+            parentFragmentManager.setFragmentResult("addNewItem", bundleOf(
+                "toAdd" to false
+                )
+            )
+            requireActivity().onBackPressed()
+        }
+
+        //going back with changes
         saveButton.setOnClickListener {
-         parentFragmentManager.setFragmentResult("msgtochild", bundleOf(
-            "name" to addName.text,
-            "spec" to addSpec.text,
+            val name:String = if (addName.text.toString()==""){"Default name"}else{ addName.text.toString()}
+            val spec:String = if (addSpec.text.toString()==""){"Default spec"}else{ addSpec.text.toString()}
+         parentFragmentManager.setFragmentResult("addNewItem", bundleOf(
+            "name" to name,
+            "spec" to spec,
             "strength" to addStrength.rating,
-            "danger" to currData.dangerous,
-            "type" to currData.item_type,
-            "humanoids" to currData.humanoids
+            "danger" to addDanger.isChecked,
+            "type" to race,
+            "toAdd" to true
+            )
         )
-        )
+            requireActivity().onBackPressed()
          }
 
 
-         */
+
     }
 
     companion object {

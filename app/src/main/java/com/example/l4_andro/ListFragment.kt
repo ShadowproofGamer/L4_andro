@@ -31,7 +31,7 @@ class ListFragment : Fragment() {
 
     private lateinit var _binding: FragmentListBinding
     val dataRepo = DataRepo.getInstance()
-    val adapter = MyAdapter(dataRepo.getData())
+    //val adapter = MyAdapter(dataRepo.getData())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,14 +73,16 @@ class ListFragment : Fragment() {
          */
         parentFragmentManager.setFragmentResultListener("addNewItem", viewLifecycleOwner){ string, bundle ->
             run {
-                val itemName = bundle.getString("name")
-                val itemSpec = bundle.getString("spec")
-                val itemStrength = bundle.getFloat("strength")
-                val itemDanger = bundle.getBoolean("danger")
-                val itemType = bundle.getString("type")
-                val newItem = DataItem(itemName!!, itemSpec!!, itemStrength, itemType!!, itemDanger)
-                dataRepo.addItem(newItem)
-        }
+                if (bundle.getBoolean("toAdd")){
+                    val itemName = bundle.getString("name", "New person")
+                    val itemSpec = bundle.getString("spec", "Some spec")
+                    val itemStrength = bundle.getFloat("strength", 1.0F)
+                    val itemDanger = bundle.getBoolean("danger", false)
+                    val itemType = bundle.getString("type", "Human")
+                    val newItem = DataItem(itemName, itemSpec, itemStrength, itemType, itemDanger)
+                    dataRepo.addItem(newItem)
+                }
+            }
         }
 
         setHasOptionsMenu(true)
@@ -100,6 +102,10 @@ class ListFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun getRepo():DataRepo{
+        return dataRepo
     }
 
 
@@ -127,7 +133,9 @@ class ListFragment : Fragment() {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             var currData = data[position]
             holder.txt1.text = currData.text_name
-            holder.txt2.text = currData.item_type + " " + currData.text_spec +" "+ currData.item_strength
+            holder.txt2.text = if (currData.text_spec=="Default specification"){
+                (currData.item_type + " " + currData.text_spec +" "+ currData.item_strength)
+                }else{currData.text_spec}
             holder.itemView.setOnClickListener {
                 parentFragmentManager.setFragmentResult("msgtochild", bundleOf(
                     "name" to currData.text_name,
@@ -170,6 +178,7 @@ class ListFragment : Fragment() {
 
 
     companion object {
+        //val publicRepo = this.dataRepo
 
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
