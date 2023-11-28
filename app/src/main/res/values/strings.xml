@@ -49,6 +49,10 @@
     <string name="show_strength">Strength</string>
     <string name="show_spec">Here add specific info</string>
 
+    <string name="img1">String 1</string>
+    <string name="img2">String 2</string>
+    <string name="img3">String 3</string>
+    <string name="radio_tab">Change last text</string>
 
 
 </resources>

@@ -61,6 +61,7 @@ class AddFragment : Fragment() {
                 _binding.addTypeNPC.id -> race="NPC"
                 _binding.addTypeOrc.id -> race="Orc"
             } }
+
         //going back without changes
         cancelButton.setOnClickListener {
             parentFragmentManager.setFragmentResult("addNewItem", bundleOf(

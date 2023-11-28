@@ -34,4 +34,10 @@
         android:gravity="center_horizontal"
         android:text="@string/author_surname_txt" />
 
+    <TextView
+        android:id="@+id/additional_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Setting Def" />
+
 </LinearLayout>

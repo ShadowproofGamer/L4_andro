@@ -1,7 +1,7 @@
 package com.example.l4_andro
 
 class DataRepo {
-    private val LIST_SIZE = 15
+    private val LIST_SIZE = 2
     private lateinit var dataList: MutableList<DataItem>
 
     companion object{

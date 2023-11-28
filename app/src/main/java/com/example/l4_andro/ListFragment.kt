@@ -96,19 +96,12 @@ class ListFragment : Fragment() {
         when (item.itemId){
             R.id.menu_item_add -> {
                 //Toast.makeText(requireActivity(), "new item clicked!", Toast.LENGTH_SHORT).show()
-
                 //go to adder fragment
                 findNavController().navigate(R.id.action_listFragment_to_addFragment)
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
-    fun getRepo():DataRepo{
-        return dataRepo
-    }
-
-
 
 
     inner class MyAdapter(var data: MutableList<DataItem>) :
@@ -151,13 +144,12 @@ class ListFragment : Fragment() {
 
                 findNavController().navigate(R.id.action_listFragment_to_showFragment)
 
-                //temp for clicking an object
                 /*
+                //temp for clicking an object
                 Toast.makeText(requireContext(),
                     "You clicked: " + (position + 1),
 
                     Toast.LENGTH_SHORT).show()
-
                  */
             }
             holder.itemView.setOnLongClickListener {
